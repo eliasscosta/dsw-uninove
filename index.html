@@ -2,7 +2,7 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<link rel="stylesheet" type="text/css" href="estilo.css"/>
+	<title>DSW</title>
 	<style type="text/css">
 		#main  {border: 0px solid black; width:960px;margin: 0 auto;}
 		
@@ -18,13 +18,16 @@
 		ul#lista_barra      {border:0px solid black;padding:10px;margin:0px;}	
 		ul#lista_barra li   {list-style: none; display: inline-block; padding:10px; margin-right:1px; border:1px solid black; background-color: black;border-radius: 14px 14px 14px 14px;}
 		ul#lista_barra li a {color: white;text-decoration: none;}
-		ul#lista_barra li:hover {background-color: orange;border-color: orange;}
+		ul#lista_barra li:hover {background-color: green;border-color: green;}
+		ul#lista_barra li a:hover {color: black;}
 
 		ul#lista_menu      {border:0px solid black;padding:10px;margin:0px;}	
-		ul#lista_menu li   {list-style: none; padding:10px; margin-bottom:2px; border:1px solid black; background-color: #AAAAAA;}
+		ul#lista_menu li   {list-style: none; padding:10px; margin-bottom:2px; border:1px solid black; background-color: gray;}
 		ul#lista_menu li a {color: white;text-decoration: none;}
-		ul#lista_menu li:hover {background-color: orange;border-color: orange;}
+		ul#lista_menu li:hover {background-color: green;border-color: gray;}
+		ul#lista_menu li a:hover {color: back;}
 		
+		body {font-family: verdana; font-size: 14px;}
 		select{
 			width: 150px;
 			margin-left:10px;
@@ -39,16 +42,16 @@
 		
 	</style>
 	<script type="text/javascript">
-		function fnEnviar(){
+		function salvar(){
 			
 			var indexEC   = document.getElementById("ec").selectedIndex;
 			var indexQTDF = document.getElementById("qtdf").selectedIndex;
 			
-			var resultado = "Nome: " + document.getElementById("ne").value;
-			resultado += "<br><br>Senha: " + document.getElementById("ps").value;
+			var resultado = "Nome: " + document.getElementById("nome").value;
+			resultado += "<br><br>Senha: " + document.getElementById("password").value;
 			resultado += "<br><br>Mostrar senha: " + (document.getElementById("cb").checked ? "Sim":"Não");
-			resultado += "<br><br>É homem: " + (document.getElementById("sx1").checked ? "Sim":"Não");
-			resultado += "<br><br>É mulher: " + (document.getElementById("sx2").checked ? "Sim":"Não");
+			resultado += "<br><br>É homem: " + (document.getElementById("sexo1").checked ? "Sim":"Não");
+			resultado += "<br><br>É mulher: " + (document.getElementById("sexo2").checked ? "Sim":"Não");
 			resultado += "<br><br>Estado civil: " + document.getElementById("ec")[indexEC].value;
 			resultado += "<br><br>Quantidade de filhos: " + document.getElementById("qtdf")[indexQTDF].value;
 			resultado += "<br><br>Descrição: " + document.getElementById("desc").value;
@@ -56,25 +59,12 @@
 			document.getElementById("resultado").innerHTML = resultado;
 
   
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-      document.getElementById("resultado").innerHTML = xhttp.responseText;
-    }
-  };
-  xhttp.open("GET", "http://profleandromota.esy.es/select.php", true);
-  xhttp.send();
-
-
-
-
-
-
-
-
-
-
+       // var xhttp = new XMLHttpRequest();
+       //xhttp.onreadystatechange = function() {
+       //if (xhttp.readyState == 4 && xhttp.status == 200) {
+       //document.getElementById("resultado").innerHTML = xhttp.responseText;
 		}
+
 	
 	</script>
 </head>
@@ -83,43 +73,32 @@
 
 <div id="main" style="absolute">
 	<div id="topo"></div>
-	<div id="barra">
-		<ul id="lista_barra">
-			<li><a href="imagens.html">Imagens</a></li>
-			<li><a href="videos.html">Vídeos</a></li>
-			<li><a href="tabelas.html">Tabelas</a></li>
-			<li><a href="iframe.html">Iframes</a></li>
-			<li><a href="listas.html">Listas</a></li>
-			<li><a href="links.html">Links</a></li>
-			<li><a href="formularios.html">Formulários</a></li>
-		</ul>	
-	</div>
 	<div id="menu">
 	<ul id="lista_menu">
-		<li><a href="imagens.html">Imagens</a></li>
-		<li><a href="videos.html">Vídeos</a></li>
-		<li><a href="tabelas.html">Tabelas</a></li>
-		<li><a href="iframe.html">Iframes</a></li>
-		<li><a href="listas.html">Listas</a></li>
-		<li><a href="links.html">Links</a></li>
-		<li><a href="formularios.html">Formulários</a></li>
+		<li><a href="#">Imagens</a></li>
+		<li><a href="#">Vídeos</a></li>
+		<li><a href="#">Tabelas</a></li>
+		<li><a href="#">Iframes</a></li>
+		<li><a href="#">Listas</a></li>
+		<li><a href="#">Links</a></li>
+		<li><a href="#">Formulários</a></li>
 	</ul>
 	
 	</div>
 	<div id="centro">
 	
-		<form name="cadALunos">
+		<form name="cadastro">
 		
-		Nome: <input id="ne" type="text"/><br><br>
-		Senha: <input id="ps" type="password" onClick="document.getElementById('ps').type='password';"/>
-		Mostrar senha: <input id="cb" type="checkbox" onClick="document.getElementById('ps').type='text';"/><br><br>
-		Sexo: <input type="radio" id="sx1" name="sx" value="Masculino"/>Masculino<input type="radio" id="sx2" name="sx" value="Feminino"/>Feminino<br><br>
-		Estado civil: <select id="ec" size="1">
+		Nome: <input id="nome" type="text"/><br><br>
+		Senha: <input id="password" type="password"/>
+		Mostrar senha: <input id="cb" type="checkbox" onClick="document.getElementById('password').type='text';"/><br><br>
+		Sexo: <br><br><input type="radio" id="sexo1" name="sexo" value="Masculino"/>Masculino<input type="radio" id="sexo2" name="sexo" value="Feminino"/>Feminino<br><br>
+		Estado civil: <br><br><select id="ec" size="1">
 			<option name="s" value="SOLTEIRO">Solteiro</option>
 			<option name="c" value="CASADO" selected>Casado</option>
 		</select>
 
-		Quantidade de filhos: <select id="qtdf" size="5">
+		<br>Quantidade de filhos: <br><br><select id="qtdf" size="5">
 			<option name="qf" value="NENHUM">0</option>
 			<option name="qf" value="UM_FILHO" selected>1</option>
 			<option name="qf" value="DOIS_FILHOS" selected>2</option>
@@ -127,9 +106,9 @@
 			<option name="qf" value="MAIS_DE_3_FILHOS" selected>Mais de 3 filhos</option>			
 		</select>
 		<br><br>
-		Descrição: <textarea id="desc"></textarea>
+		Descrição: <br><br><textarea id="desc"></textarea>
 		
-		<br><br><input type="button" value="enviar" onClick="fnEnviar()"/>
+		<br><br><input type="button" value="Enviar" onClick="salvar()"/>
 		</form>
 		
 		<div id="resultado" style="border:1px solid black;padding: 20px;">
@@ -137,7 +116,7 @@
 		</div>
 	
 	</div>
-	<div id="rodape">Html, css e java script</div>
+	<div id="rodape">HTML  - CSS - JAVASCRIPT </div>
 </div>
 
 </body>
