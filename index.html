@@ -1,0 +1,145 @@
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="estilo.css"/>
+	<style type="text/css">
+		#main  {border: 0px solid black; width:960px;margin: 0 auto;}
+		
+		#topo  {border: 0px solid black; background-image:url("topo.png"); height:140px; background-repeat: no-repeat; background-size:100% 100%;		}
+		
+		#barra {padding: 0 !important; border: 0px solid black;}
+		#menu  {width:20%; float:left; border-radius: 14px 14px 14px 14px; border:0px solid black;}
+		#centro{width:75%; float:right;border-radius: 14px 14px 14px 14px;padding: 15px;border-color:#666666;background-color: #EEEEEE;}
+		#rodape{clear:both;background-color: #666666;padding:10px; color:white;border-radius: 10px 10px;}
+		
+		div    {margin-bottom:5px !important; border: 1px solid black;}
+		
+		ul#lista_barra      {border:0px solid black;padding:10px;margin:0px;}	
+		ul#lista_barra li   {list-style: none; display: inline-block; padding:10px; margin-right:1px; border:1px solid black; background-color: black;border-radius: 14px 14px 14px 14px;}
+		ul#lista_barra li a {color: white;text-decoration: none;}
+		ul#lista_barra li:hover {background-color: orange;border-color: orange;}
+
+		ul#lista_menu      {border:0px solid black;padding:10px;margin:0px;}	
+		ul#lista_menu li   {list-style: none; padding:10px; margin-bottom:2px; border:1px solid black; background-color: #AAAAAA;}
+		ul#lista_menu li a {color: white;text-decoration: none;}
+		ul#lista_menu li:hover {background-color: orange;border-color: orange;}
+		
+		select{
+			width: 150px;
+			margin-left:10px;
+			vertical-align: text-top;
+		}
+		
+		textarea{
+			width: 250px;
+			margin-left:10px;
+			vertical-align: text-top;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		function fnEnviar(){
+			
+			var indexEC   = document.getElementById("ec").selectedIndex;
+			var indexQTDF = document.getElementById("qtdf").selectedIndex;
+			
+			var resultado = "Nome: " + document.getElementById("ne").value;
+			resultado += "<br><br>Senha: " + document.getElementById("ps").value;
+			resultado += "<br><br>Mostrar senha: " + (document.getElementById("cb").checked ? "Sim":"Não");
+			resultado += "<br><br>É homem: " + (document.getElementById("sx1").checked ? "Sim":"Não");
+			resultado += "<br><br>É mulher: " + (document.getElementById("sx2").checked ? "Sim":"Não");
+			resultado += "<br><br>Estado civil: " + document.getElementById("ec")[indexEC].value;
+			resultado += "<br><br>Quantidade de filhos: " + document.getElementById("qtdf")[indexQTDF].value;
+			resultado += "<br><br>Descrição: " + document.getElementById("desc").value;
+			
+			document.getElementById("resultado").innerHTML = resultado;
+
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("resultado").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "http://profleandromota.esy.es/select.php", true);
+  xhttp.send();
+
+
+
+
+
+
+
+
+
+
+		}
+	
+	</script>
+</head>
+
+<body>
+
+<div id="main" style="absolute">
+	<div id="topo"></div>
+	<div id="barra">
+		<ul id="lista_barra">
+			<li><a href="imagens.html">Imagens</a></li>
+			<li><a href="videos.html">Vídeos</a></li>
+			<li><a href="tabelas.html">Tabelas</a></li>
+			<li><a href="iframe.html">Iframes</a></li>
+			<li><a href="listas.html">Listas</a></li>
+			<li><a href="links.html">Links</a></li>
+			<li><a href="formularios.html">Formulários</a></li>
+		</ul>	
+	</div>
+	<div id="menu">
+	<ul id="lista_menu">
+		<li><a href="imagens.html">Imagens</a></li>
+		<li><a href="videos.html">Vídeos</a></li>
+		<li><a href="tabelas.html">Tabelas</a></li>
+		<li><a href="iframe.html">Iframes</a></li>
+		<li><a href="listas.html">Listas</a></li>
+		<li><a href="links.html">Links</a></li>
+		<li><a href="formularios.html">Formulários</a></li>
+	</ul>
+	
+	</div>
+	<div id="centro">
+	
+		<form name="cadALunos">
+		
+		Nome: <input id="ne" type="text"/><br><br>
+		Senha: <input id="ps" type="password" onClick="document.getElementById('ps').type='password';"/>
+		Mostrar senha: <input id="cb" type="checkbox" onClick="document.getElementById('ps').type='text';"/><br><br>
+		Sexo: <input type="radio" id="sx1" name="sx" value="Masculino"/>Masculino<input type="radio" id="sx2" name="sx" value="Feminino"/>Feminino<br><br>
+		Estado civil: <select id="ec" size="1">
+			<option name="s" value="SOLTEIRO">Solteiro</option>
+			<option name="c" value="CASADO" selected>Casado</option>
+		</select>
+
+		Quantidade de filhos: <select id="qtdf" size="5">
+			<option name="qf" value="NENHUM">0</option>
+			<option name="qf" value="UM_FILHO" selected>1</option>
+			<option name="qf" value="DOIS_FILHOS" selected>2</option>
+			<option name="qf" value="TRES_FILHOS" selected>3</option>
+			<option name="qf" value="MAIS_DE_3_FILHOS" selected>Mais de 3 filhos</option>			
+		</select>
+		<br><br>
+		Descrição: <textarea id="desc"></textarea>
+		
+		<br><br><input type="button" value="enviar" onClick="fnEnviar()"/>
+		</form>
+		
+		<div id="resultado" style="border:1px solid black;padding: 20px;">
+		Resultado aqui!!!
+		</div>
+	
+	</div>
+	<div id="rodape">Html, css e java script</div>
+</div>
+
+</body>
+
+</html>		
